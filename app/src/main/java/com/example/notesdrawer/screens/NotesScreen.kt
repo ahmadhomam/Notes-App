@@ -1,7 +1,6 @@
 package com.example.notesdrawer.screens
 
 import android.app.AlertDialog
-import android.content.DialogInterface
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -32,7 +31,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -44,7 +42,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.PopupProperties
 import androidx.navigation.NavHostController
-import com.example.notesdrawer.Models.Navigation.NotesNavigation
 import com.example.notesdrawer.Models.Navigation.NotesNavigationItem
 import com.example.notesdrawer.Models.Notes
 import com.example.notesdrawer.ui.theme.black
@@ -78,7 +75,7 @@ fun NotesScreen(navHostController: NavHostController){
     Scaffold(floatingActionButton = {
         FloatingActionButton(containerColor = Color.Red, contentColor = Color.White, onClick = {
 
-            navHostController.navigate(NotesNavigationItem.insertNotesScreen.route)
+            navHostController.navigate(NotesNavigationItem.insertNotesScreen.route + "/default Id")
         })
         { Icon(imageVector = Icons.Default.Add, contentDescription = "") }
     }){ innerpadding ->
@@ -94,7 +91,7 @@ fun NotesScreen(navHostController: NavHostController){
                 if (loading.value) {
                     LazyColumn {
                         items(noteslist) { notes ->
-                            Listitems(notes,notesDBref)
+                            Listitems(notes,notesDBref,navHostController)
                         }
                     }
                 }
@@ -115,7 +112,7 @@ fun NotesScreen(navHostController: NavHostController){
 
 
 @Composable
-fun Listitems(notes: Notes, notesDBref: CollectionReference){
+fun Listitems(notes: Notes, notesDBref: CollectionReference, navHostController: NavHostController){
 
     val context = LocalContext.current
 
@@ -132,7 +129,9 @@ fun Listitems(notes: Notes, notesDBref: CollectionReference){
             properties = PopupProperties(clippingEnabled = true),
             offset = DpOffset(x  = (-40).dp, y= 0.dp),
             expanded = expanded, onDismissRequest = {}) {
-            DropdownMenuItem(text = {Text(text = "Update", style = TextStyle(color = Color.Black))}, onClick = {})
+            DropdownMenuItem(text = {Text(text = "Update", style = TextStyle(color = Color.Black))}, onClick = {
+                navHostController.navigate(NotesNavigationItem.insertNotesScreen.route + "/${notes.id}")
+            })
             DropdownMenuItem(text = {Text(text = "Delete", style = TextStyle(color = Color.Black))},
                 onClick = {
 
@@ -142,9 +141,13 @@ fun Listitems(notes: Notes, notesDBref: CollectionReference){
                     ) { dialog, which ->
                         notesDBref.document(notes.id).delete()
                         dialog?.dismiss()
+                        expanded = false
                     }
                     alertDialog.setNegativeButton("No"
-                    ) { dialog, which -> dialog?.dismiss() }
+                    ) { dialog, which ->
+                        dialog?.dismiss()
+                        expanded = false
+                    }
 
                     alertDialog.show()
                 })
