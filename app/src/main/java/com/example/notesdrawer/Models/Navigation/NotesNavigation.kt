@@ -16,7 +16,7 @@ fun NotesNavigation(navHostController: NavHostController){
             splashscreen(navHostController)
         }
         composable(NotesNavigationItem.NotesScreen.route){
-            NotesScreen()
+            NotesScreen(navHostController)
         }
         composable(NotesNavigationItem.insertNotesScreen.route){
             insertNotesScreen()

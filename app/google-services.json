@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "792972649510",
+    "project_id": "notesdrawer-2298b",
+    "storage_bucket": "notesdrawer-2298b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:792972649510:android:a4ea19c3ba96170928b2e7",
+        "android_client_info": {
+          "package_name": "com.example.notesdrawer"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDiTCEy8h3Dn4E6I1x40RhxAXn9izgv3bQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

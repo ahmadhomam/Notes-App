@@ -18,7 +18,7 @@ import com.example.notesdrawer.ui.theme.NotesDrawerTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+
         setContent {
             val navHostController = rememberNavController()
             NotesNavigation(navHostController)

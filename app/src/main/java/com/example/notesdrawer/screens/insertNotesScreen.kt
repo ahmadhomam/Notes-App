@@ -13,13 +13,11 @@ import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Done
-import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldColors
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -29,13 +27,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.notesdrawer.ui.theme.PurpleGrey40
+import androidx.navigation.NavHostController
 import com.example.notesdrawer.ui.theme.black
 import com.example.notesdrawer.ui.theme.dark_Grey
 
 @Composable
 @Preview
-fun insertNotesScreen(){
+fun insertNotesScreen() {
     Scaffold (floatingActionButton = {
         FloatingActionButton(containerColor = Color.Red, contentColor = Color.White,onClick = {}) {
             Icon(imageVector = Icons.Default.Done, contentDescription = "")

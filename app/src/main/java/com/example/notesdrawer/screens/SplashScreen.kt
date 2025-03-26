@@ -35,7 +35,7 @@ fun splashscreen(navHostController: NavHostController) {
         }
     }
     LaunchedEffect(Unit) {
-        delay(2000)
+        delay(1300)
         navHostController.navigate(NotesNavigationItem.NotesScreen.route){
             popUpTo(NotesNavigationItem.SplashScreen.route){
                 inclusive = true
